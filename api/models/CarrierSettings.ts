@@ -39,14 +39,14 @@ export interface CarrierSettings {
     carrier_id: string;
     /**
      * 
-     * The test flag indicates whether to use a carrier configured for test. 
+     * The test flag indicates whether to use a carrier configured for test.
      * @type {boolean}
      * @memberof CarrierSettings
      */
     test: boolean;
     /**
      * 
-     * The active flag indicates whether the carrier account is active or not. 
+     * The active flag indicates whether the carrier account is active or not.
      * @type {boolean}
      * @memberof CarrierSettings
      */

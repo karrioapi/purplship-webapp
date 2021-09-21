@@ -30,8 +30,8 @@ import {
 } from '../models';
 
 export interface CreateRequest {
-    carrierName: string;
     trackingNumber: string;
+    carrierName: CreateCarrierNameEnum;
     test?: boolean | null;
 }
 
@@ -62,12 +62,12 @@ export class TrackersApi extends runtime.BaseAPI {
      * Create a shipment tracker
      */
     async createRaw(requestParameters: CreateRequest): Promise<runtime.ApiResponse<TrackingStatus>> {
-        if (requestParameters.carrierName === null || requestParameters.carrierName === undefined) {
-            throw new runtime.RequiredError('carrierName','Required parameter requestParameters.carrierName was null or undefined when calling create.');
-        }
-
         if (requestParameters.trackingNumber === null || requestParameters.trackingNumber === undefined) {
             throw new runtime.RequiredError('trackingNumber','Required parameter requestParameters.trackingNumber was null or undefined when calling create.');
+        }
+
+        if (requestParameters.carrierName === null || requestParameters.carrierName === undefined) {
+            throw new runtime.RequiredError('carrierName','Required parameter requestParameters.carrierName was null or undefined when calling create.');
         }
 
         const queryParameters: any = {};
@@ -83,7 +83,7 @@ export class TrackersApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/v1/trackers/{carrier_name}/{tracking_number}`.replace(`{${"carrier_name"}}`, encodeURIComponent(String(requestParameters.carrierName))).replace(`{${"tracking_number"}}`, encodeURIComponent(String(requestParameters.trackingNumber))),
+            path: `/v1/trackers/{carrier_name}/{tracking_number}`.replace(`{${"tracking_number"}}`, encodeURIComponent(String(requestParameters.trackingNumber))).replace(`{${"carrier_name"}}`, encodeURIComponent(String(requestParameters.carrierName))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -231,6 +231,32 @@ export class TrackersApi extends runtime.BaseAPI {
 
 }
 
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CreateCarrierNameEnum {
+    Aramex = 'aramex',
+    Australiapost = 'australiapost',
+    Canadapost = 'canadapost',
+    Canpar = 'canpar',
+    DhlExpress = 'dhl_express',
+    DhlUniversal = 'dhl_universal',
+    Dicom = 'dicom',
+    Fedex = 'fedex',
+    Purolator = 'purolator',
+    Royalmail = 'royalmail',
+    Sendle = 'sendle',
+    SfExpress = 'sf_express',
+    Tnt = 'tnt',
+    Ups = 'ups',
+    Usps = 'usps',
+    UspsInternational = 'usps_international',
+    Yanwen = 'yanwen',
+    Yunexpress = 'yunexpress',
+    Eshipper = 'eshipper',
+    Freightcom = 'freightcom'
+}
 /**
     * @export
     * @enum {string}

@@ -9,7 +9,7 @@ const BoardFooter: React.FC<BoardFooterComponent> = () => {
                 <div className="column"></div>
                 <div className="column has-text-centered">
                     <a href="https://purplship.com">
-                        <img src="/static/purpleserver/favicon-set/favicon.svg" alt="" width="50" />
+                        <img src="/static/purplship/favicon-set/favicon.svg" alt="" width="50" />
                     </a>
                 </div>
                 <div className="column has-text-right-desktop">
